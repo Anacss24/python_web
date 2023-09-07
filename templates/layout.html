@@ -2,7 +2,7 @@
 <html>
     <head>
         <title>Flaskr</title>
-        <link rel="stylesheet" href="../static/estilo.css">
+        <link rel="stylesheet" href="{{url_for('static', filename = )}}">
 
     </head>
      <body>
@@ -12,7 +12,7 @@
             {% if not session.logado %}
               <a href="{{url_for('login')}}">Login</a> <!-- Rota do app.py  -->
             {% else %}
-              <a href="">logout</a>
+              <a href="{{url_for('logout')}}">Logout</a>
             {% endif %}
             </div>
             {% for mensagem in get_flashed_messages() %}

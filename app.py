@@ -4,17 +4,7 @@ from flask import Flask, render_template, request, session, flash, redirect, url
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'pudim'
 
-posts= [
-   {
-    "titulo": "Minha primeira postagem",
-    "texto": "teste"
-   },
-   {
-    "titulo": "Segundo post",
-    "texto": " outro teste"
-   }
 
-]
 
 # Rota ou visualização 
 @app.route('/')
@@ -32,3 +22,21 @@ def login():
          return redirect(url_for('exibir_entradas'))
       erro = "Usuário ou senha inválidos"
    return render_template('login.html', erro=erro)
+
+@app.route('/logout')
+def logout():
+   session.pop('logado')
+   flash('Logout efetuado com sucesso!')
+   return redirect(url_for('exibir_entradas'))
+
+@app.route('/inserir', methods =["POST"])
+def inserir_entradas():
+   if session['logado']:
+     novo_post ={
+      "titulo": request.form['titulo'],
+      "texto": request.form['texto']
+     } 
+     posts.append(novo_post)
+     flash("Post criado com sucesso!")
+   return redirect(url_for('exibir_entradas'))
+      
