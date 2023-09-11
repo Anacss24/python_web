@@ -2,7 +2,7 @@
 <html>
     <head>
         <title>Flaskr</title>
-        <link rel="stylesheet" href="{{url_for('static', filename = )}}">
+        <link rel="stylesheet" href="{{url_for('static', filename ='estilo.css' )}}">
 
     </head>
      <body>
@@ -18,7 +18,8 @@
             {% for mensagem in get_flashed_messages() %}
               <div class="flash">{{ mensagem }}</div>
             {% endfor %}
-            {% block corpo %}{% endblock %}
+            {% block corpo %}
+            {% endblock %}
           </div>
 
      </body>
